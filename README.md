@@ -1,4 +1,4 @@
-# ŠJ”­’†...
+ï»¿# cDCGAN WebAppï¼ˆé–‹ç™ºé€”ä¸­ï¼‰
 
-# Sample
+## Sample
 ![sample](./sample.gif)
