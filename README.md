@@ -1,4 +1,4 @@
-﻿# cDCGAN WebApp（開発途中）
+﻿# cDCGAN WebApp（開発途中ver2）
 
 ## Sample
 ![sample](./sample.gif)
