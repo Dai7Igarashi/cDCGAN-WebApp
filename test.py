@@ -5,6 +5,8 @@ import time
 import os
 import numpy as np
 from PIL import Image
+from io import BytesIO
+import base64
 
 import chainer
 
@@ -43,4 +45,10 @@ def generate_image(label_array, gpu):
     _, _, H, W = x_fake.shape
     x = x_fake[0].reshape(H, W)
 
-    Image.fromarray(x).save('static/images/mnist.png')
+    # Image.fromarray(x).save('static/images/mnist.png')
+    image = Image.fromarray(x)
+    buffer = BytesIO()
+    image.save(buffer, format='png')
+    encode = base64.b64encode(buffer.getvalue())
+
+    return encode

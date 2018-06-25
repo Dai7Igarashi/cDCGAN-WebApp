@@ -15,13 +15,10 @@ def index():
 @app.route('/chainer', methods=['POST'])
 def generate_mnist():
     ranges = request.form.getlist('range[]')
-    print('#arr: {}'.format(ranges))
+    # print('#arr: {}'.format(ranges))
 
     # conditionalDCGAN
-    generate_image(ranges, -1)
-
-    image = open('./static/images/mnist.png', 'rb').read()
-    encode = base64.b64encode(image)
+    encode = generate_image(ranges, -1)
 
     return encode
 
