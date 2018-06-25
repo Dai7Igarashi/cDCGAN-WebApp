@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>cDCGAN WebApp</title>
+    <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/cupertino/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
     <h1>conditional DCGAN</h1>
@@ -12,63 +14,26 @@
     </div>
 
     <div id="slidebars">
-        <div id="slidebar" name="0" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="1" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="2" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="3" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="4" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="5" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="6" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="7" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="8" style="width:100px;"></div><span id="num">0</span>
-        <div id="slidebar" name="9" style="width:100px;"></div><span id="num">0</span>
+        <div class="box">
+            <span class="label">ラベル0</span><span class="nval">0</span><div id="slidebar" name="0"></div>
+            <span class="label">ラベル1</span><span class="nval">0</span><div id="slidebar" name="1"></div>
+            <span class="label">ラベル2</span><span class="nval">0</span><div id="slidebar" name="2"></div>
+            <span class="label">ラベル3</span><span class="nval">0</span><div id="slidebar" name="3"></div>
+            <span class="label">ラベル4</span><span class="nval">0</span><div id="slidebar" name="4"></div>
+        </div>
+        <div class="box">
+            <span class="label">ラベル5</span><span class="nval">0</span><div id="slidebar" name="5"></div>
+            <span class="label">ラベル6</span><span class="nval">0</span><div id="slidebar" name="6"></div>
+            <span class="label">ラベル7</span><span class="nval">0</span><div id="slidebar" name="7"></div>
+            <span class="label">ラベル8</span><span class="nval">0</span><div id="slidebar" name="8"></div>
+            <span class="label">ラベル9</span><span class="nval">0</span><div id="slidebar" name="9"></div>
+        </div>
     </div>
-    <button>Sumbit</button>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/le-frog/jquery-ui.css" />
-    <script>
-        $(function(){
-            var arr = new Array();
 
-            $('#slidebars > #slidebar').slider({
-                min: 0,
-                max: 1,
-                step: 0.001,
-                value: 0,
-                slide: function(e, ui) {
-                    $(this).next('#num').html('<span id="num">' + ui.value + '</span>');
-                },
-                change: function(e, ui) {
-                    $(this).next('#num').html('<span id="num">' + ui.value + '</span>');
-                    // console.log("name: " + Number($(this).attr('name')));
-                    arr[Number($(this).attr('name'))] = ui.value;
-                    // console.log("change: " + arr);
-                },
-                create: function(e, ui) {
-                    $(this).next('#num').html('<span id="num">' + $(this).slider('option', 'value') + '</span>');
-                    arr.push($(this).slider('option', 'value'));
-                    // console.log("create: " + arr);
-                }
-            });
-
-            // console.log(arr);
-
-            $('button').click(function(){
-                $.ajax({
-                    url: '/chainer',
-                    type: 'post',
-                    data: {
-                        range: arr
-                    },
-                })
-                .done(function(response) {
-                    var base = 'data:image/png;base64,' + response;
-                    $('.image').children('img').attr('src', base);
-                });
-            });
-        });
-    </script>
+    <div id="footer">Daichi Igarashi (2018)</div>
+     
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="static/js/main.js"></script>
 </body>
 </html>
