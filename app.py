@@ -18,7 +18,7 @@ def generate_mnist():
     # print('#arr: {}'.format(ranges))
 
     # conditionalDCGAN
-    encode = generate_image(ranges, -1)
+    encode = generate_image(ranges)
 
     return encode
 

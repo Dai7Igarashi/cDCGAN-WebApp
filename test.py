@@ -1,8 +1,5 @@
 # coding: UTF-8
 
-import argparse
-import time
-import os
 import numpy as np
 from PIL import Image
 from io import BytesIO
@@ -12,28 +9,22 @@ import chainer
 
 from conditionalDCGAN import Generator
 
-def generate_image(label_array, gpu):
+def generate_image(label_array):
 
-    print('=== Generate Image ===')
+    # print('=== Generate Image ===')
 
     # 学習済みGenerator設定
     n_hidden = 100
     gen = Generator(n_hidden=n_hidden)
     chainer.serializers.load_npz('generator.npz', gen)
 
-    # cpu or gpu
-    if gpu >= 0:
-        chainer.cuda.get_device_from_id(gpu).use()
-        gen.to_gpu()
-    xp = chainer.cuda.cupy if gpu >= 0 else np
-
     # 入力ノイズデータ作成(バッチサイズ2)
-    z = chainer.Variable(xp.asarray(gen.make_hidden(2)))
+    z = chainer.Variable(np.asarray(gen.make_hidden(2)))
 
     # ラベル整形 str -> np.array
-    label = xp.array(label_array, dtype=xp.float32)
+    label = np.array(label_array, dtype=np.float32)
 
-    label = xp.vstack((label, label)).reshape(2, 10, 1, 1)
+    label = np.vstack((label, label)).reshape(2, 10, 1, 1)
 
     # 画像生成
     with chainer.using_config('train', False):
