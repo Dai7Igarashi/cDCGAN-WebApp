@@ -1,0 +1,4 @@
+numpy==1.12.1
+pillow==4.1.1
+chainer==3.5.0
+flask==0.12.2
