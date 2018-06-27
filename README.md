@@ -13,5 +13,5 @@
 
 起動はこちら -> <https://conditional-app.herokuapp.com/>
 
-> *Qiitaの記事を書きました*    
+> **Qiitaの記事を書きました**    
 > [Conditional DCGANのWebアプリをchainer+Ajaxで開発し heroku+flaskでデプロイするまで（その1）](https://qiita.com/Dai7Igarashi/items/b2d88ced9953954fd86a)
